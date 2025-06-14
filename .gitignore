@@ -1,0 +1,10 @@
+# Ignore build and temporary files
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.db
+*.log
+*.DS_Store
+.env

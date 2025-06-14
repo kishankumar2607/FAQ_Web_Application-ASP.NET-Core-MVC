@@ -1,0 +1,77 @@
+﻿@model List<KishanKumarDas_Assignment2.Models.Faq>
+@{
+    ViewData["Title"] = "Faq Page";
+    var topics = ViewBag.Topics as List<KishanKumarDas_Assignment2.Models.Topic>;
+    var categories = ViewBag.Categories as List<KishanKumarDas_Assignment2.Models.Category>;
+    var selectedTopic = ViewBag.SelectedTopic as string;
+    var selectedCategory = ViewBag.SelectedCategory as string;
+}
+
+<div style="background-color: #16a3b6; color: #fff; padding: 42px 0px 48px 0px; margin: 0px 60px 42px 60px;">
+    <h1 class="text-center fw-bold mb-0" style="font-size:2.5rem;">Frequently Asked Questions</h1>
+</div>
+
+<div class="container">
+    <div class="row px-5">
+        <div class="col-md-2">
+            <div class="list-group mb-4">
+                @if (categories != null)
+                {
+                    @foreach (var cat in categories)
+                    {
+                        <a class="list-group-item list-group-item-action @(selectedCategory == cat.CategoryId ? "active fw-bold text-decoration-none" : "text-decoration-none")"
+                           asp-controller="Home"
+                           asp-action="Index"
+                           asp-route-topic="@(selectedTopic)"
+                           asp-route-category="@(cat.CategoryId)">
+                            @cat.Name
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div class="mb-3" style="font-size: 1.1rem;">
+                <a href="/" class="me-3 @(String.IsNullOrEmpty(selectedTopic) ? "fw-bold text-decoration-none" : "text-decoration-none")">
+                    All FAQs
+                </a>
+                @if (topics != null)
+                {
+                    @foreach (var topic in topics)
+                    {
+                        <a class="me-3 @(selectedTopic == topic.TopicId ? "fw-bold text-decoration-none" : "text-decoration-none")"
+                           asp-controller="Home"
+                           asp-action="Index"
+                           asp-route-topic="@topic.TopicId"
+                           asp-route-category="@(selectedCategory)">
+                            @topic.Name
+                        </a>
+                    }
+                }
+            </div>
+
+            @if (Model.Count == 0)
+            {
+                <p>No FAQs found.</p>
+            }
+            else
+            {
+                <div class="list-group">
+                    @foreach (var faq in Model)
+                    {
+                        <div class="list-group-item" style="border: 1px solid #e5e5e5; border-radius: 4px; margin-bottom: 10px;">
+                            <span class="fw-bold">Question: </span><span class="fw-bold">@faq.Question</span><br />
+                            <span class="fw-bold">Answer: </span><span>@faq.Answer</span>
+                            <div class="mt-2" style="font-size: 0.97em;">
+                                <span class="text-secondary">Topic: @faq.Topic.Name</span>
+                                <span class="mx-3"></span>
+                                <span class="text-secondary">Category: @faq.Category.Name</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
