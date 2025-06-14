@@ -38,7 +38,7 @@ Follow these exact steps:
 
 ```bash
 git clone https://github.com/kishankumar2607/FAQ_Web_Application-ASP.NET-Core-MVC.git
-cd faq-mvc-app
+cd FAQ_Web_Application-ASP.NET-Core-MVC
 ```
 
 ---
