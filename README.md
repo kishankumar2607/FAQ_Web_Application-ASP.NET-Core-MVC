@@ -37,7 +37,7 @@ Follow these exact steps:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/faq-mvc-app.git
+git clone https://github.com/kishankumar2607/FAQ_Web_Application-ASP.NET-Core-MVC.git
 cd faq-mvc-app
 ```
 
